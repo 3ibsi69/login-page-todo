@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 function Signup() {
@@ -7,24 +7,23 @@ function Signup() {
   const [password, setPassword] = useState("");
 
   const addSignup = () => {
-    if (name === ""){
-        alert("Please enter your name");
-        return;
+    if (name === "") {
+      alert("Please enter your name");
+      return;
     }
-    if (email === ""){
-        alert("Please enter your email");
-        return;
+    if (email === "") {
+      alert("Please enter your email");
+      return;
     }
-    if(!email.includes("@") || email.lastIndexOf(".")<= email.indexOf("@") ){
-        alert("Please enter a valid email");
-        return;
-    }
-
-    if (password === ""){
-        alert("Please enter your password");
-        return;
+    if (!email.includes("@") || email.lastIndexOf(".") <= email.indexOf("@")) {
+      alert("Please enter a valid email");
+      return;
     }
 
+    if (password === "") {
+      alert("Please enter your password");
+      return;
+    }
 
     axios
       .post("http://localhost:3636/signup", {
