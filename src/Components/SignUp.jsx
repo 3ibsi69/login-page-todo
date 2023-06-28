@@ -70,13 +70,15 @@ function Signup() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button id="btn" onClick={addSignup}>
-          Sign Up
-        </button>
+        <a href="/">
+          <button id="btn" onClick={addSignup}>
+            Sign Up
+          </button>
+        </a>
       </div>
       <hr />
       <p>
-        You already have an account? <a href="">Login</a>
+        You already have an account? <a href="/">Login</a>
       </p>
     </div>
   );

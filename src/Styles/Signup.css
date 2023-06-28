@@ -12,6 +12,11 @@ body {
   height: 100vh;
   position: relative;
 }
+body a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
 
 .container {
   width: 400px;
@@ -79,9 +84,4 @@ body {
   margin-top: 20px;
   font-size: 17px;
   letter-spacing: 1px;
-}
-.container p a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
 }/*# sourceMappingURL=Signup.css.map */
