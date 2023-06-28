@@ -19,7 +19,6 @@ function Signup() {
       alert("Please enter a valid email");
       return;
     }
-
     if (password === "") {
       alert("Please enter your password");
       return;
@@ -44,6 +43,8 @@ function Signup() {
         console.log(err);
       });
   };
+
+  const isFormValid = name !== "" && email !== "" && password !== "";
 
   return (
     <div className="container">
@@ -70,11 +71,17 @@ function Signup() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <a href="/">
+        {isFormValid ? (
+          <a href="/">
+            <button id="btn" onClick={addSignup}>
+              Sign Up
+            </button>
+          </a>
+        ) : (
           <button id="btn" onClick={addSignup}>
             Sign Up
           </button>
-        </a>
+        )}
       </div>
       <hr />
       <p>
