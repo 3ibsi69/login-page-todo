@@ -1,8 +1,12 @@
 import React from "react";
+import SignUp from "./Components/SignUp.jsx";
+import "./Styles/Signup.css";
+
 function App() {
   return (
     <div className="App">
-      <h1>React 18 Alpha</h1>
+      <SignUp />
+      
     </div>
   );
 }
