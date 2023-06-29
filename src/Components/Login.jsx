@@ -15,7 +15,7 @@ function Login() {
     alert("Please enter a valid email or password");
   }
     });
-    
+
   };
 
   return (

@@ -3,10 +3,9 @@ import "./Styles/Signup.css";
 import Login from "./Components/Login.jsx";
 
 function App() {
-
   return (
     <div className="App">
-      <Login/>
+      <Login />
     </div>
   );
 }
