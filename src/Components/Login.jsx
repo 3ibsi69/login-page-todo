@@ -6,16 +6,16 @@ function Login() {
 
   const getLogin = () => {
     axios.get("http://localhost:3636/signup").then((res) => {
-    const data=res.data;
-    const finduser=data.find((e)=>e.email===email&&e.password===password);
-    if(finduser){
-        alert("Hello"+finduser.name);
-
-  }else{
-    alert("Please enter a valid email or password");
-  }
+      const data = res.data;
+      const finduser = data.find(
+        (e) => e.email === email && e.password === password
+      );
+      if (finduser) {
+        alert("Hello" + finduser.name);
+      } else {
+        alert("Please enter a valid email or password");
+      }
     });
-
   };
 
   return (
