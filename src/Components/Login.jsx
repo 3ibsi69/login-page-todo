@@ -11,7 +11,7 @@ function Login() {
         (e) => e.email === email && e.password === password
       );
       if (finduser) {
-        alert("Hello" + finduser.name);
+        alert("Hello " + finduser.name);
       } else {
         alert("Please enter a valid email or password");
       }
