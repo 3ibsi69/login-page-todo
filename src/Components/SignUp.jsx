@@ -45,6 +45,7 @@ function Signup() {
       .catch((err) => {
         console.log(err);
       });
+      navigate("/");
   };
   function tologin(){
     navigate("/");
@@ -78,11 +79,9 @@ function Signup() {
           onChange={(e) => setPassword(e.target.value)}
         />
         {isFormValid ? (
-          <a href="/">
             <button id="btn" onClick={addSignup}>
               Sign Up
             </button>
-          </a>
         ) : (
           <button id="btn" onClick={addSignup}>
             Sign Up

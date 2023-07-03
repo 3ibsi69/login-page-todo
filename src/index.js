@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path:"/todo/:signupid",
+    path:"/todo",
     element: <TodoForm/>
   }
 ]);

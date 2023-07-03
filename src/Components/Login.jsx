@@ -14,6 +14,8 @@ function Login() {
       );
       if (finduser) {
         alert("Hello " + finduser.name);
+    navigate("/todo");
+
       } else {
         alert("Please enter a valid email or password");
       }
