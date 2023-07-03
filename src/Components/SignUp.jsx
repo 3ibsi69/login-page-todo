@@ -1,10 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  var navigate=useNavigate();
+
 
   const addSignup = () => {
     if (name === "") {
@@ -43,6 +46,9 @@ function Signup() {
         console.log(err);
       });
   };
+  function tologin(){
+    navigate("/");
+  }
 
   const isFormValid = name !== "" && email !== "" && password !== "";
 
@@ -85,7 +91,7 @@ function Signup() {
       </div>
       <hr />
       <p>
-        You already have an account? <a href="/">Login</a>
+        You already have an account? <span onClick={()=>{tologin();}}>Login</span>
       </p>
     </div>
   );

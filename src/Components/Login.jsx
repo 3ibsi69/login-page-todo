@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  var navigate=useNavigate();
 
   const getLogin = () => {
     axios.get("http://localhost:3636/signup").then((res) => {
@@ -17,6 +19,9 @@ function Login() {
       }
     });
   };
+  function tosignup(){
+    navigate("/signup");
+  }
 
   return (
     <div className="container">
@@ -42,7 +47,7 @@ function Login() {
       </div>
       <hr />
       <p>
-        You don't have an account? <a href="/signup">Sign Up</a>
+        You don't have an account? <span onClick={()=>{tosignup();}}> Sign Up</span>
       </p>
     </div>
   );
