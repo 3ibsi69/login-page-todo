@@ -8,8 +8,7 @@ import TodoForm from "./Components/todo.jsx";
 // styling
 import "./Styles/Signup.css";
 
-import{ BrowserRouter as Router,Route,Routes } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -17,11 +16,11 @@ function App() {
       <Router>
         <div>
           <Routes>
-          <Route path="/" element={<Login/>}/> 
-          <Route path="/signup" element={<SignUp/>}/> 
-          <Route path="/todo" element={<TodoForm/>}/> 
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/todo" element={<TodoForm />} />
           </Routes>
-           </div>
+        </div>
       </Router>
     </div>
   );

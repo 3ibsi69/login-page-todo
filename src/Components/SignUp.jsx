@@ -16,7 +16,7 @@ function Signup() {
         console.log(data);
         if (data.token) {
           localStorage.setItem("token", data.token);
-          navigate("/todo")
+          navigate("/todo");
         } else {
           alert(data.msg);
         }

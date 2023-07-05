@@ -6,19 +6,20 @@ function Login() {
   const [password, setPassword] = useState("");
   var navigate = useNavigate();
 
-function login(){
-  axios.post("http://localhost:3636/user/login",{email,password}).then(({data})=>{
-    if(data.token){
-      localStorage.setItem("token",data.token);
-      navigate("/todo");
-    }else{
-      alert(data.msg);
-    }
-  })
-}
+  function login() {
+    axios
+      .post("http://localhost:3636/user/login", { email, password })
+      .then(({ data }) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          navigate("/todo");
+        } else {
+          alert(data.msg);
+        }
+      });
+  }
 
-
-  function tosignup(){
+  function tosignup() {
     navigate("/signup");
   }
 
@@ -40,13 +41,21 @@ function login(){
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button id="btn" onClick={()=>login()}>
+        <button id="btn" onClick={() => login()}>
           Login
         </button>
       </div>
       <hr />
       <p>
-        You don't have an account? <span onClick={()=>{tosignup();}}> Sign Up</span>
+        You don't have an account?{" "}
+        <span
+          onClick={() => {
+            tosignup();
+          }}
+        >
+          {" "}
+          Sign Up
+        </span>
       </p>
     </div>
   );
