@@ -32,8 +32,10 @@ function TodoForm() {
         axios.post('http://localhost:3636/todo',{todo:newtodo})
         .then((res)=>{
             const createdTodo=res.data;
-            setTodos([...todos,createdTodo]); 
+            setTodos([...todos,createdTodo]);
+            setNewTodo('');
             window.location.reload();
+
         })
         .catch((err)=>{
             console.log(err);
