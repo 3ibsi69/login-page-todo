@@ -4,23 +4,20 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  var navigate=useNavigate();
+  var navigate = useNavigate();
 
-  const getLogin = () => {
-    axios.get("http://localhost:3636/signup").then((res) => {
-      const data = res.data;
-      const finduser = data.find(
-        (e) => e.email === email && e.password === password
-      );
-      if (finduser) {
-        alert("Hello " + finduser.name);
-    navigate("/todo");
+function login(){
+  axios.post("http://localhost:3636/user/login",{email,password}).then(({data})=>{
+    if(data.token){
+      localStorage.setItem("token",data.token);
+      navigate("/todo");
+    }else{
+      alert(data.msg);
+    }
+  })
+}
 
-      } else {
-        alert("Please enter a valid email or password");
-      }
-    });
-  };
+
   function tosignup(){
     navigate("/signup");
   }
@@ -43,7 +40,7 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button id="btn" onClick={getLogin}>
+        <button id="btn" onClick={()=>login()}>
           Login
         </button>
       </div>

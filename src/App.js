@@ -1,8 +1,12 @@
 import React from "react";
+
+// components
 import Login from "./Components/Login.jsx";
 import SignUp from "./Components/SignUp.jsx";
-import "./Styles/Signup.css";
 import TodoForm from "./Components/todo.jsx";
+
+// styling
+import "./Styles/Signup.css";
 
 import{ BrowserRouter as Router,Route,Routes } from "react-router-dom";
 
