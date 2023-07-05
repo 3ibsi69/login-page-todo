@@ -12,10 +12,40 @@ function TodoForm() {
     email: "",
   });
 
+  //   get todos
   function getmytodos(userId) {
     axios.get("http://localhost:3636/todo/" + user._id).then(({ data }) => {
       setTodos(data);
     });
+  }
+
+  // add todo
+  function addTodo() {
+    if (newtodo !== "") {
+      axios
+        .post("http://localhost:3636/todo/", {
+          title: newtodo,
+          userId: user._id,
+        })
+        .then(({ data }) => {
+          getmytodos(user._id);
+        });
+    } else {
+      alert("please enter your todo");
+    }
+  }
+
+  // delete todo
+  function deleteTodo(todoId) {
+    axios
+      .delete("http://localhost:3636/todo/" + todoId)
+      .then(({ data }) => {
+        const updatedTodos = todos.filter((todo) => todo._id !== todoId);
+        setTodos(updatedTodos);
+      })
+      .catch((error) => {
+        console.error("Error deleting todo:", error);
+      });
   }
 
   useEffect(() => {
@@ -37,25 +67,7 @@ function TodoForm() {
     }
   }, []);
 
-  function addTodo() {
-    axios
-      .post("http://localhost:3636/todo/", { title: newtodo, userId: user._id })
-      .then(({ data }) => {
-        getmytodos(user._id);
-      });
-  }
-
-  function deleteTodo() {
-    axios.delete("http://localhost:3636/todo/" + user._id).then(({ data }) => {
-      getmytodos(user._id);
-    });
-  }
-  function updateTodo() {
-    axios.put("http://localhost:3636/todo/" + user._id).then(({ data }) => {
-      getmytodos(user._id);
-    });
-  }
-
+  // disconnect
   function disconnect() {
     localStorage.removeItem("token");
     navigate("/");
@@ -72,6 +84,7 @@ function TodoForm() {
             placeholder="Enter your todo.... "
             value={newtodo}
             onChange={(e) => setNewTodo(e.target.value)}
+            required
           />
           <button id="add-btn" onClick={() => addTodo()}>
             Add
@@ -82,7 +95,36 @@ function TodoForm() {
         <div className="todos">
           <div className="todo">
             {todos.map((e) => {
-              return <li>{e.title}</li>;
+              return (
+                <div className="todo-item" key={e._id}>
+                  <p>{e.title}</p>
+                  <svg
+                    id="edit"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M5 19h1.4l8.625-8.625l-1.4-1.4L5 17.6V19ZM19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Zm-3.525-.725l-.7-.7l1.4 1.4l-.7-.7Z"
+                    />
+                  </svg>
+                  <svg
+                    onClick={() => deleteTodo(e._id)}
+                    id="del"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24ZM100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Zm48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Z"
+                    />
+                  </svg>
+                </div>
+              );
             })}
           </div>
         </div>
