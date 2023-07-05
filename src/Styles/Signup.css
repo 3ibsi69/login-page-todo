@@ -100,6 +100,8 @@ body span {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
 }
 .todo-form .container-todo .inputs {
   position: relative;
@@ -163,4 +165,32 @@ body span {
 }
 .todo-form .container-todo .todo-item #edit:hover {
   color: #000;
+}
+.todo-form #btn-dis {
+  width: 10px;
+  height: 40px;
+  background: #ccc;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: -1.9%;
+  overflow: hidden;
+  transition: 0.3s;
+}
+.todo-form #btn-dis::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  background: #ccc;
+  transition: 0.3s;
+}
+.todo-form #btn-dis:hover::before {
+  background: transparent;
+}
+.todo-form #btn-dis:hover {
+  width: 100px;
 }/*# sourceMappingURL=Signup.css.map */

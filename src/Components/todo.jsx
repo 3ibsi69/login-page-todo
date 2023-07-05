@@ -91,7 +91,9 @@ function TodoForm() {
           </button>
         </div>
         <hr />
-
+        <button id="btn-dis" onClick={() => disconnect()}>
+        Disconnect
+      </button>
         <div className="todos">
           <div className="todo">
             {todos.map((e) => {
@@ -129,9 +131,7 @@ function TodoForm() {
           </div>
         </div>
       </div>
-      <button id="disconnect" onClick={() => disconnect()}>
-        Disconnect
-      </button>
+     
     </div>
   );
 }
