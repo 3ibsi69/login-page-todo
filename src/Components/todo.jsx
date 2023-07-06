@@ -6,7 +6,7 @@ function TodoForm() {
   var navigate = useNavigate();
   var [newtodo, setNewTodo] = useState("");
   var [todos, setTodos] = useState([]);
-
+  const [updatedTodo, setUpdatedTodo] = useState("");
   var [user, setUser] = useState({
     _id: "",
     email: "",
@@ -14,7 +14,7 @@ function TodoForm() {
 
   //   get todos
   function getmytodos(userId) {
-    axios.get("http://localhost:3636/todo/" + user._id).then(({ data }) => {
+    axios.get("http://localhost:3636/todo/"+userId).then(({ data }) => {
       setTodos(data);
     });
   }
@@ -29,6 +29,7 @@ function TodoForm() {
         })
         .then(({ data }) => {
           getmytodos(user._id);
+          setNewTodo("");
         });
     } else {
       alert("please enter your todo");
@@ -48,6 +49,8 @@ function TodoForm() {
       });
   }
 
+  
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
@@ -57,7 +60,7 @@ function TodoForm() {
         .then(({ data }) => {
           if (data.user._id) {
             setUser(data.user);
-            getmytodos(data._id);
+            getmytodos(data.user._id);
           } else {
             navigate("/");
           }
