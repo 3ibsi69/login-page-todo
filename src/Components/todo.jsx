@@ -13,7 +13,7 @@ function TodoForm() {
 
   //   get todos
   function getmytodos(userId) {
-    axios.get("http://localhost:3636/todo/"+userId).then(({ data }) => {
+    axios.get("http://localhost:3636/todo/" + userId).then(({ data }) => {
       setTodos(data);
     });
   }
@@ -48,15 +48,15 @@ function TodoForm() {
         console.error("Error deleting todo:", error);
       });
   }
-   // edit todo
-   const edittodo = (todoId) => {
+  // edit todo
+  const edittodo = (todoId) => {
     const editedTodo = prompt("Enter your new todo");
     if (editedTodo === "") {
       alert("Please enter a todo");
       return;
     }
     axios
-      .put("http://localhost:3636/todo/"+todoId, { title: editedTodo })
+      .put("http://localhost:3636/todo/" + todoId, { title: editedTodo })
       .then(({ data }) => {
         const editedTodo = data;
         const editedTodos = todos.map((todo) => {
@@ -72,9 +72,6 @@ function TodoForm() {
         console.error("Error updating todo:", error);
       });
   };
-  
-  
-  
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -95,7 +92,13 @@ function TodoForm() {
     }
   }, []);
 
+  var [showPopup, setShowPopup] = useState(false);
+
   // disconnect
+  function show_pop() {
+    setShowPopup(!showPopup);
+    console.log(showPopup);
+  }
   function disconnect() {
     localStorage.removeItem("token");
     navigate("/");
@@ -103,8 +106,11 @@ function TodoForm() {
 
   return (
     <div className="todo-form">
-      <div className="container-todo">
-        <h1 align="center">welcome <br/><span id="titlew">{user.email}</span> </h1>
+      <div className={`container-todo ${showPopup ? "blur":""} `}>
+        <h1 align="center">
+          welcome <br />
+          <span id="titlew">{user.email}</span>{" "}
+        </h1>
         <div className="inputs">
           <input
             className="input"
@@ -119,9 +125,9 @@ function TodoForm() {
           </button>
         </div>
         <hr />
-        <button id="btn-dis" onClick={() => disconnect()}>
-        Disconnect
-      </button>
+        <button id="btn-dis" onClick={() => show_pop()}>
+          Disconnect
+        </button>
         <div className="todos">
           <div className="todo">
             {todos.map((e) => {
@@ -129,7 +135,7 @@ function TodoForm() {
                 <div className="todo-item" key={e._id}>
                   <p>{e.title}</p>
                   <svg
-                  onClick={()=>edittodo(e._id)}
+                    onClick={() => edittodo(e._id)}
                     id="edit"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -160,7 +166,17 @@ function TodoForm() {
           </div>
         </div>
       </div>
-     
+      {showPopup ? (
+        <div className="popup">
+          <div className="popup-inner">
+            <h1>Are you sure you want to disconnect?</h1>
+            <div className="btns">
+            <button onClick={() => disconnect()}>yes</button>
+            <button onClick={() => show_pop()}>no</button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

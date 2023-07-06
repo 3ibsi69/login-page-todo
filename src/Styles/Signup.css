@@ -12,6 +12,7 @@ body {
   height: 100vh;
   position: relative;
 }
+
 body span {
   text-decoration: none;
   color: #333;
@@ -30,6 +31,7 @@ body span {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .container h1 {
   text-align: center;
   padding: 20px 0;
@@ -37,11 +39,13 @@ body span {
   letter-spacing: 2px;
   font-weight: bold;
 }
+
 .container .inputs {
   width: 100%;
   padding: 10px 0;
   position: relative;
 }
+
 .container .inputs input {
   display: flex;
   width: 90%;
@@ -56,9 +60,11 @@ body span {
   align-items: center;
   border-bottom: 0.5px solid #333;
 }
+
 .container .inputs input:focus {
   border-bottom: 2px solid #333;
 }
+
 .container .inputs #btn {
   width: 90%;
   margin: 20px 0;
@@ -75,11 +81,13 @@ body span {
   cursor: pointer;
   border-radius: 5px;
 }
+
 .container .inputs #btn:hover {
   background: #333;
   color: #f5f5f5;
   transition: all 0.3s ease-in-out;
 }
+
 .container p {
   text-align: center;
   margin-top: 20px;
@@ -94,6 +102,7 @@ body span {
   justify-content: center;
   align-items: center;
 }
+
 .todo-form .container-todo {
   width: 500px;
   min-height: 500px;
@@ -103,18 +112,22 @@ body span {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
 }
+
 .todo-form .container-todo h1 {
   margin-top: -18px;
   margin-bottom: 10px;
 }
+
 .todo-form .container-todo #titlew {
   font-size: 15px;
   max-width: 200px;
 }
+
 .todo-form .container-todo .inputs {
   position: relative;
   margin-bottom: 20px;
 }
+
 .todo-form .container-todo .input {
   display: flex;
   flex-direction: column;
@@ -125,6 +138,7 @@ body span {
   padding: 15px;
   font-size: 20px;
 }
+
 .todo-form .container-todo .inputs #add-btn {
   width: 100px;
   height: 40px;
@@ -138,22 +152,27 @@ body span {
   bottom: 0;
   font-weight: bold;
 }
+
 .todo-form .container-todo .input:focus {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
 .todo-form .container-todo .inputs #add-btn:hover {
   background: #ddd;
 }
+
 .todo-form .container-todo hr {
   margin: 20px 0;
 }
+
 .todo-form .container-todo .todo-item {
   display: flex;
   position: relative;
   align-items: center;
   margin-bottom: 25px;
 }
+
 .todo-form .container-todo .todo-item #del {
   position: absolute;
   right: 0;
@@ -161,9 +180,11 @@ body span {
   font-weight: bold;
   color: #ccc;
 }
+
 .todo-form .container-todo .todo-item #del:hover {
   color: #000;
 }
+
 .todo-form .container-todo .todo-item #edit {
   position: absolute;
   right: 40px;
@@ -171,9 +192,11 @@ body span {
   font-weight: bold;
   color: #ccc;
 }
+
 .todo-form .container-todo .todo-item #edit:hover {
   color: #000;
 }
+
 .todo-form #btn-dis {
   width: 10px;
   height: 40px;
@@ -188,6 +211,7 @@ body span {
   overflow: hidden;
   transition: 0.3s;
 }
+
 .todo-form #btn-dis::before {
   content: "";
   position: absolute;
@@ -196,9 +220,69 @@ body span {
   background: #ccc;
   transition: 0.3s;
 }
+
 .todo-form #btn-dis:hover::before {
   background: transparent;
 }
+
 .todo-form #btn-dis:hover {
   width: 100px;
-}/*# sourceMappingURL=Signup.css.map */
+}
+
+.todo-form .popup {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-form .popup h1 {
+  margin-top: -18px;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.todo-form .popup .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.todo-form .popup .btns button {
+  width: 100px;
+  height: 40px;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 30px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.todo-form .popup .btns button:first-child:hover {
+  background: #179607;
+}
+
+.todo-form .popup .btns button:last-child:hover {
+  background: #d00f0f;
+
+}
+
+.container-todo.blur {
+  filter: blur(10px);
+}
+
+/*# sourceMappingURL=Signup.css.map */

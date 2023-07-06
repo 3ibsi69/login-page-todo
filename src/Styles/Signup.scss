@@ -89,141 +89,185 @@ body {
   }
 }
 
-.todo-form{
+.todo-form {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  .container-todo {
+    width: 500px;
+    min-height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
 
+    h1 {
+      margin-top: -18px;
+      margin-bottom: 10px;
+    }
+    #titlew {
+      font-size: 15px;
+      max-width: 200px;
+    }
 
-.container-todo {
-  width: 500px;
-  min-height: 500px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  position: relative;
+    .inputs {
+      position: relative;
+      margin-bottom: 20px;
+    }
 
+    .input {
+      display: flex;
+      flex-direction: column;
+      height: 40px;
+      width: 100%;
+      outline: none;
+      border: none;
+      padding: 15px;
 
+      font-size: 20px;
+    }
 
-h1{
-  margin-top: -18px;
-  margin-bottom: 10px;
-}
-  #titlew{
-  font-size: 15px; 
-  max-width: 200px;  
+    .inputs #add-btn {
+      width: 100px;
+      height: 40px;
+      background: #ccc;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-weight: bold;
+    }
+
+    .input:focus {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .inputs #add-btn:hover {
+      background: #ddd;
+    }
+
+    hr {
+      margin: 20px 0;
+    }
+
+    .todo-item {
+      display: flex;
+      position: relative;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .todo-item #del {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      font-weight: bold;
+      color: #ccc;
+    }
+
+    .todo-item #del:hover {
+      color: #000;
+    }
+
+    .todo-item #edit {
+      position: absolute;
+      right: 40px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #ccc;
+    }
+    .todo-item #edit:hover {
+      color: #000;
+    }
   }
 
-.inputs {
-  position: relative;
-  margin-bottom: 20px;
-}
+  #btn-dis {
+    width: 10px;
+    height: 40px;
+    background: #ccc;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: -1.9%;
+    overflow: hidden;
+    transition: 0.3s;
+  }
 
-.input {
-  display: flex;
-  flex-direction: column;
-  height: 40px;
-  width: 100%;
-  outline: none;
-  border: none;
-  padding: 15px;
+  #btn-dis::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    background: #ccc;
+    transition: 0.3s;
+  }
 
-  font-size: 20px;
-}
+  #btn-dis:hover::before {
+    background: transparent;
+  }
 
-.inputs #add-btn {
-  width: 100px;
-  height: 40px;
-  background: #ccc;
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  font-weight: bold;
-}
+  #btn-dis:hover {
+    width: 100px;
+  }
+  .popup {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-.input:focus {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+    h1 {
+      margin-top: -18px;
+      margin-bottom: 10px;
+      font-size: 25px;
+    }
+    .btns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
 
-.inputs #add-btn:hover {
-  background: #ddd;
-}
+      button {
+        width: 100px;
+        height: 40px;
+        background: #ccc;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        margin: 30px;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+      }
 
-hr {
-  margin: 20px 0;
-}
+      // get the first button
+      button:first-child:hover {
+        background: #179607;
+      }
+      button:last-child:hover {
+        background: #d00f0f;
+      }
+    }
+  }
 
-.todo-item {
-  display: flex;
-  position: relative;
-  align-items: center;
-  margin-bottom: 25px;
-
-}
-
-
-.todo-item #del {
-  position: absolute;
-  right: 0;
-  cursor: pointer;
-  font-weight: bold;
-  color: #ccc;
-}
-
-.todo-item #del:hover {
-  color: #000;
-}
-
-.todo-item #edit {
-  position: absolute;
-  right: 40px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #ccc;
-}
-.todo-item #edit:hover {
-  color: #000;
-}
-}
-
-#btn-dis {
-  width: 10px;
-  height: 40px;
-  background: #ccc;
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: -1.9%;
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-#btn-dis::before {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 100%;
-  background: #ccc;
-  transition:  0.3s;
-}
-
-#btn-dis:hover::before {
-  background: transparent;
-}
-
-#btn-dis:hover {
-  width: 100px;
-}
 }
