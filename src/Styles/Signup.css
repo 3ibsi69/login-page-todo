@@ -96,12 +96,20 @@ body span {
 }
 .todo-form .container-todo {
   width: 500px;
-  height: 500px;
+  min-height: 500px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
+}
+.todo-form .container-todo h1 {
+  margin-top: -18px;
+  margin-bottom: 10px;
+}
+.todo-form .container-todo #titlew {
+  font-size: 15px;
+  max-width: 200px;
 }
 .todo-form .container-todo .inputs {
   position: relative;

@@ -6,7 +6,6 @@ function TodoForm() {
   var navigate = useNavigate();
   var [newtodo, setNewTodo] = useState("");
   var [todos, setTodos] = useState([]);
-  const [updatedTodo, setUpdatedTodo] = useState("");
   var [user, setUser] = useState({
     _id: "",
     email: "",
@@ -43,12 +42,38 @@ function TodoForm() {
       .then(({ data }) => {
         const updatedTodos = todos.filter((todo) => todo._id !== todoId);
         setTodos(updatedTodos);
+        getmytodos(user._id);
       })
       .catch((error) => {
         console.error("Error deleting todo:", error);
       });
   }
-
+   // edit todo
+   const edittodo = (todoId) => {
+    const editedTodo = prompt("Enter your new todo");
+    if (editedTodo === "") {
+      alert("Please enter a todo");
+      return;
+    }
+    axios
+      .put("http://localhost:3636/todo/"+todoId, { title: editedTodo })
+      .then(({ data }) => {
+        const editedTodo = data;
+        const editedTodos = todos.map((todo) => {
+          if (todo._id === editedTodo._id) {
+            return editedTodo;
+          }
+          return todo;
+        });
+        setTodos(editedTodos);
+        getmytodos(user._id);
+      })
+      .catch((error) => {
+        console.error("Error updating todo:", error);
+      });
+  };
+  
+  
   
 
   useEffect(() => {
@@ -79,7 +104,7 @@ function TodoForm() {
   return (
     <div className="todo-form">
       <div className="container-todo">
-        <h1>welcome {user.email} </h1>
+        <h1 align="center">welcome <br/><span id="titlew">{user.email}</span> </h1>
         <div className="inputs">
           <input
             className="input"
@@ -104,6 +129,7 @@ function TodoForm() {
                 <div className="todo-item" key={e._id}>
                   <p>{e.title}</p>
                   <svg
+                  onClick={()=>edittodo(e._id)}
                     id="edit"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

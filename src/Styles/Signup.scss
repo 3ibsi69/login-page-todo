@@ -100,7 +100,7 @@ body {
 
 .container-todo {
   width: 500px;
-  height: 500px;
+  min-height: 500px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
@@ -108,6 +108,15 @@ body {
   position: relative;
 
 
+
+h1{
+  margin-top: -18px;
+  margin-bottom: 10px;
+}
+  #titlew{
+  font-size: 15px; 
+  max-width: 200px;  
+  }
 
 .inputs {
   position: relative;
