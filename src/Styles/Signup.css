@@ -113,6 +113,8 @@ body span {
   position: relative;
 }
 
+
+
 .todo-form .container-todo h1 {
   margin-top: -18px;
   margin-bottom: 10px;
@@ -127,6 +129,7 @@ body span {
   position: relative;
   margin-bottom: 20px;
 }
+
 
 .todo-form .container-todo .input {
   display: flex;
@@ -278,11 +281,6 @@ body span {
 
 .todo-form .popup .btns button:last-child:hover {
   background: #d00f0f;
-
-}
-
-.container-todo.blur {
-  filter: blur(10px);
 }
 
 /*# sourceMappingURL=Signup.css.map */

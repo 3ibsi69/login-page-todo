@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 function TodoForm() {
   var navigate = useNavigate();
   var [newtodo, setNewTodo] = useState("");
@@ -43,6 +44,7 @@ function TodoForm() {
         const updatedTodos = todos.filter((todo) => todo._id !== todoId);
         setTodos(updatedTodos);
         getmytodos(user._id);
+        setShowPopupDel(null);
       })
       .catch((error) => {
         console.error("Error deleting todo:", error);
@@ -94,19 +96,26 @@ function TodoForm() {
 
   var [showPopup, setShowPopup] = useState(false);
 
-  // disconnect
   function show_pop() {
     setShowPopup(!showPopup);
-    console.log(showPopup);
   }
+  // disconnect
   function disconnect() {
     localStorage.removeItem("token");
     navigate("/");
   }
 
+  var [showPopupDel, setShowPopupDel] = useState(null);
+
+  function show_pop_del(todoId) {
+    setShowPopupDel(todoId);
+  }
+
   return (
     <div className="todo-form">
-      <div className={`container-todo ${showPopup ? "blur":""} `}>
+      <div
+        className={`container-todo ${showPopup || showPopupDel ? "blur" : ""} `}
+      >
         <h1 align="center">
           welcome <br />
           <span id="titlew">{user.email}</span>{" "}
@@ -147,8 +156,9 @@ function TodoForm() {
                       d="M5 19h1.4l8.625-8.625l-1.4-1.4L5 17.6V19ZM19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Zm-3.525-.725l-.7-.7l1.4 1.4l-.7-.7Z"
                     />
                   </svg>
-                  <svg
-                    onClick={() => deleteTodo(e._id)}
+                  
+
+                  <Popup trigger={<button> <svg
                     id="del"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -159,7 +169,33 @@ function TodoForm() {
                       fill="currentColor"
                       d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24ZM100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Zm48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Z"
                     />
-                  </svg>
+                  </svg></button>} position="right center">
+     <div className="popup">
+                      <div className="popup-inner">
+                        <h1>Are you sure you want to delete this todo?</h1>
+                        <div className="btns">
+                          <button onClick={() => deleteTodo(e._id)}>yes</button>
+                          <button onClick={() => setShowPopupDel(null)}>
+                            no
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+    </Popup>
+
+                  {/* {showPopupDel === e._id ? (
+                    <div className="popup">
+                      <div className="popup-inner">
+                        <h1>Are you sure you want to delete this todo?</h1>
+                        <div className="btns">
+                          <button onClick={() => deleteTodo(e._id)}>yes</button>
+                          <button onClick={() => setShowPopupDel(null)}>
+                            no
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : null} */}
                 </div>
               );
             })}
@@ -171,8 +207,8 @@ function TodoForm() {
           <div className="popup-inner">
             <h1>Are you sure you want to disconnect?</h1>
             <div className="btns">
-            <button onClick={() => disconnect()}>yes</button>
-            <button onClick={() => show_pop()}>no</button>
+              <button onClick={() => disconnect()}>yes</button>
+              <button onClick={() => show_pop()}>no</button>
             </div>
           </div>
         </div>

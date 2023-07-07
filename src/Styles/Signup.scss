@@ -105,6 +105,9 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: relative;
 
+    &.blur{
+      filter: blur(10px);
+    }
     h1 {
       margin-top: -18px;
       margin-bottom: 10px;
@@ -187,6 +190,11 @@ body {
     .todo-item #edit:hover {
       color: #000;
     }
+    
+.todo-item .popup.unblur {
+// make it unblur
+  filter: blur(0px);
+}
   }
 
   #btn-dis {
