@@ -1,0 +1,44 @@
+/* Style for the popup container */
+
+/* Style for the popup inner content */
+.del-popup-inner {
+    text-align: center;
+    padding: 15px;
+}
+
+/* Style for the heading */
+.del-popup-inner h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Style for the buttons */
+.del-popup-inner .btns {
+    display: flex;
+    justify-content: center;
+}
+
+/* Style for the "yes" button */
+.del-popup-inner button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.del-popup-inner button:hover {
+    background-color: #46a049;
+}
+
+/* Style for the "no" button */
+.del-popup-inner button:last-child {
+    background-color: #f44336;
+}
+
+.del-popup-inner button:last-child:hover {
+    background-color: #da190b;
+}

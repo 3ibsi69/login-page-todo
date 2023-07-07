@@ -190,11 +190,6 @@ body {
     .todo-item #edit:hover {
       color: #000;
     }
-    
-.todo-item .popup.unblur {
-// make it unblur
-  filter: blur(0px);
-}
   }
 
   #btn-dis {
@@ -265,15 +260,27 @@ body {
         margin: 30px;
         align-items: center;
         justify-content: center;
+       background-color: #4caf50;
+       border-radius: 5px;
+       color: #fff;
         transition: all 0.3s ease-in-out;
+        text-transform: capitalize;
       }
 
+      button:last-child {
+    background-color: #f44336;
+
+      }
       // get the first button
       button:first-child:hover {
-        background: #179607;
+    background-color: #46a049;
+
       }
       button:last-child:hover {
-        background: #d00f0f;
+        
+        
+        background-color: #da190b;
+
       }
     }
   }
