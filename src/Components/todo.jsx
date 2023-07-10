@@ -58,7 +58,7 @@ function TodoForm() {
     if (editedTodo === "") {
       alert("Please enter a todo");
       return;
-    }
+    }else{
     axios
       .put("http://localhost:3636/todo/" + todoId, { title: editedTodo })
       .then(({ data }) => {
@@ -75,7 +75,7 @@ function TodoForm() {
       .catch((error) => {
         console.error("Error updating todo:", error);
       });
-  };
+  };}
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
