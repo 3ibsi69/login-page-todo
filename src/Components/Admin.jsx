@@ -47,19 +47,34 @@ function AdminForm() {
 
   const changeRole = (userId,newRole)=>{
   axios
-  .put("http://localhost:3636/admin/changeRole/" + userId, {
+  .put("http://localhost:3636/admin/changeRole/" + AdminId, {
+    id:userId,
     role: newRole,
   })
   .then(()=>{
     getAllUsers(AdminId);
-    console.log("role changed",AdminId)
-    console.log("user id",userId);
 
   })
   .catch((error)=>{
     console.log("error changing role ")
   })
 }
+const deleteUser = (userId)=>{
+  axios
+  .delete("http://localhost:3636/admin/deleteUser/" + AdminId, {
+    data:{id:userId}
+    })
+    .then(()=>{
+      getAllUsers(AdminId);
+      
+      }
+      )
+      .catch((error)=>{
+        console.log("error deleting user ")
+        })
+        }
+          
+
 
 
 
@@ -68,9 +83,11 @@ function AdminForm() {
 
     <h1>All Users :</h1>
      <div className="List">
-      {allUsers.map((e)=>{
+      {allUsers.map((e,index)=>{
+          const counter=index+1;
         return(
         <div className="users" key={e._id}>
+          <h3>User {counter}</h3>
           <h4>Id</h4>
           <p>{e._id}</p>
           <h4>email</h4>
@@ -81,7 +98,8 @@ function AdminForm() {
           <p>{e.role}</p>
           <div className="admin-action">
           <button onClick={()=>changeRole(e._id,"user")}>change to user</button>
-        
+          <button onClick={()=>changeRole(e._id,"admin")}>change to admin</button>
+          <button onClick={()=>deleteUser(e._id)}>delete user</button>
 
 
 
