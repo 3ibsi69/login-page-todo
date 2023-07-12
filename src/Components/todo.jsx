@@ -207,6 +207,15 @@ function TodoForm() {
           </div>
         </div>
       ) : null}
+    {user.role==="admin" ? (
+        <div className="admin">
+            <button id="btn-admin" onClick={() => navigate("/admin")}>
+                Admin section
+            </button>
+                </div>
+    ) : null}
+
+
     </div>
   );
 }

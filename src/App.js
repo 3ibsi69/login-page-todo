@@ -9,6 +9,7 @@ import TodoForm from "./Components/todo.jsx";
 import "./Styles/Signup.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AdminForm from "./Components/Admin.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Login/>} />
             <Route path="/signup" element={<SignUp/>} />
             <Route path="/todo" element={<TodoForm/>} />
+            <Route path="/admin" element={<AdminForm/>} />
           </Routes>
         </div>
       </Router>
