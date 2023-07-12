@@ -13,7 +13,6 @@ function Signup() {
     axios
       .post("http://localhost:3636/user/signup", { email, name, password })
       .then(({ data }) => {
-        console.log(data);
         if (data.token) {
           localStorage.setItem("token", data.token);
           navigate("/todo");
