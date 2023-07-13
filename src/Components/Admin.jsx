@@ -7,7 +7,10 @@ function AdminForm() {
   const navigate = useNavigate();
   const [allUsers, setAllUsers] = useState([]);
   const [todos, setTodos] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [noTodos, setNoTodos] = useState(false);
   const [AdminId, setAdminId] = useState(null);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -36,7 +39,7 @@ function AdminForm() {
     await axios
       .get("http://localhost:3636/admin/getalluser/" + adminId)
       .then(({ data }) => {
-        const filteredUsers = data.alluser.filter(user=>user._id!==adminId);
+        const filteredUsers = data.alluser.filter((user) => user._id !== adminId);
         setAllUsers(filteredUsers);
         setAdminId(adminId);
       })
@@ -58,6 +61,7 @@ function AdminForm() {
         console.log("error changing role ");
       });
   };
+
   const deleteUser = (userId) => {
     axios
       .delete("http://localhost:3636/admin/deleteUser/" + AdminId, {
@@ -73,28 +77,36 @@ function AdminForm() {
 
   const seetodos = (userId) => {
     // Check if todos are already being displayed for the user
-    if (todos.length > 0 && todos[0].userId === userId) {
-      // If so, clear the todos state
+    if (selectedUserId === userId) {
       setTodos([]);
+      setSelectedUserId(null);
     } else {
       // Fetch todos for the user
       axios
         .get("http://localhost:3636/todo/" + userId)
         .then(({ data }) => {
-          setTodos(data);
+          if (data.length === 0) {
+            setNoTodos(true);
+          } else {
+            setTodos(data);
+            setNoTodos(false);
+          }
+          setSelectedUserId(userId);
         })
         .catch((error) => {
           console.log("Error fetching todos:", error);
         });
     }
   };
-  
+
   return (
     <div className="Users-list">
       <div className="disconnect">
-      <button className="btn" onClick={() => navigate("/todo")}>Go Back</button>
+        <button className="btn" onClick={() => navigate("/todo")}>
+          Go Back
+        </button>
       </div>
-      <h1>All Users :</h1>
+      <h1>All Users:</h1>
       <div className="List">
         {allUsers.map((e, index) => {
           const counter = index + 1;
@@ -104,34 +116,38 @@ function AdminForm() {
               <h4>Id</h4>
               <p>{e._id}</p>
               <h4>email</h4>
-
               <p>{e.email}</p>
               <h4>role</h4>
-
               <p>{e.role}</p>
               <div className="admin-action">
                 <button className="btn" onClick={() => changeRole(e._id, "user")}>
                   change to user
                 </button>
-                <button  className="btn" onClick={() => changeRole(e._id, "admin")}>
+                <button className="btn" onClick={() => changeRole(e._id, "admin")}>
                   change to admin
                 </button>
-                <button className="btn" onClick={() => deleteUser(e._id)}>delete user</button>
-                <button className="btn" onClick={() => seetodos(e._id)}>see todos</button>
+                <button className="btn" onClick={() => deleteUser(e._id)}>
+                  delete user
+                </button>
+                <button className="btn" onClick={() => seetodos(e._id)}>
+                  {selectedUserId === e._id ? "hide todos" : "see todos"}
+                </button>
               </div>
-              
-              {todos.length > 0 && e._id === todos[0].userId && (
+
+              {selectedUserId === e._id && (
                 <div>
                   <h4>Todos:</h4>
-                  <ul>
-                    {todos.map((todo) => (
-                      <li key={todo.id}> {todo.title}</li>
-                      
-                    ))}
-                  </ul>
+                  {noTodos ? (
+                    <p>no todos</p>
+                  ) : (
+                    <ul>
+                      {todos.map((todo) => (
+                        <li key={todo.id}> {todo.title}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
-
             </div>
           );
         })}
